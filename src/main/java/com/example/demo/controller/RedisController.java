@@ -8,8 +8,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/redis")
 public class RedisController {
 
+    private final RedisService redisService;
+
     @Autowired
-    private RedisService redisService;
+    public RedisController(RedisService redisService) {
+        this.redisService = redisService;
+    }
 
     @PostMapping("/set")
     public String setValue(@RequestParam String key, @RequestParam String value) {
@@ -19,7 +23,8 @@ public class RedisController {
 
     @GetMapping("/get")
     public String getValue(@RequestParam String key) {
-        return "Value: " + redisService.getValue(key);
+        Object value = redisService.getValue(key);
+        return "Value: " + (value != null ? value.toString() : "null");
     }
 
     @DeleteMapping("/delete")

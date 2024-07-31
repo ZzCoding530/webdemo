@@ -58,3 +58,6 @@ build/
 ### VS Code ###
 .vscode/
 >>>>>>> 9f34c09 (增删改查带 redis 的 demo)
+
+
+*.properties
